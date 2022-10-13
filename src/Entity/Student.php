@@ -19,7 +19,6 @@ class Student
     private ?Classroom $class = null;
 
 
-
     public function getEmail(): ?string
     {
         return $this->email;
@@ -45,6 +44,18 @@ class Student
     public function setClass(?Classroom $class): self
     {
         $this->class = $class;
+
+        return $this;
+    }
+
+    public function getClassroom(): ?Classroom
+    {
+        return $this->classroom;
+    }
+
+    public function setClassroom(?Classroom $classroom): self
+    {
+        $this->classroom = $classroom;
 
         return $this;
     }
