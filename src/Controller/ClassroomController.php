@@ -72,4 +72,30 @@ class ClassroomController extends AbstractController
             ["f"=>$form]) ;
 
     }
+
+    #[Route('/update/{id}', name: 'update_classroom')]
+    public function update(Request $request, ManagerRegistry $doctrine,$id): Response
+    { $classroom= $doctrine->getRepository(Classroom::class)->find($id);
+        $form = $this->createForm(ClassroomType::class, $classroom);
+        $form->add('update', SubmitType::class) ;
+        $form->handleRequest($request);
+        if ($form->isSubmitted())
+        { $em = $doctrine->getManager();
+            $em->flush();
+            return $this->redirectToRoute('read_classroom');
+        }
+        return $this->renderForm("classroom/update.html.twig",
+            ["f"=>$form]) ;
+
+    }
+
+    #[Route('/delete/{id}', name: 'delete_classroom')]
+    public function delete(ManagerRegistry $doctrine,$id): Response
+    {
+        $c = $doctrine->getRepository(Classroom::class)->find($id);
+        $em = $doctrine->getManager();
+        $em->remove($c);
+        $em->flush();
+        return $this->redirectToRoute('read_classroom');
+    }
 }

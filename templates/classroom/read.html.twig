@@ -1,2 +1,19 @@
-{{ dump(classrooms) }}
+<h1> Liste des Classrooms</h1>
+<table border="1">
+    <tr> <th>Id</th>
+        <th> Name</th>
+        <th> Action</th>
+    </tr>
+    {%  for c in  classrooms %}
+        <tr>
+            <td>  {{ c.id }}</td>
+            <td>   {{ c.name }} </td>
+            <td> <a href="{{ path('delete_classroom', {'id' : c.id}) }}">Delete </a>
+                <a href="{{ path('update_classroom',  {'id' : c.id}) }}">Update </a>
+
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
 
