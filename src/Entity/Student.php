@@ -36,6 +36,14 @@ class Student
         return $this->nsc;
     }
 
+    /**
+     * @param string|null $nsc
+     */
+    public function setNsc(?string $nsc): void
+    {
+        $this->nsc = $nsc;
+    }
+
     public function getClass(): ?Classroom
     {
         return $this->class;
