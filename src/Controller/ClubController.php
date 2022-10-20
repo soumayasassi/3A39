@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Club;
+
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -38,5 +41,15 @@ class ClubController extends AbstractController
 public function details($titre)
     {
         return $this->render("club/details.html.twig", ["titre"=>$titre]);
+    }
+
+    #[Route('/readclub', name: 'read_club')]
+    public function read(ManagerRegistry $doctrine): Response
+    {
+        $clubs = $doctrine
+            ->getRepository(Club::class)
+            ->findAll();
+        return $this->render('club/read.html.twig',
+            ["clubs"=>$clubs]);
     }
 }

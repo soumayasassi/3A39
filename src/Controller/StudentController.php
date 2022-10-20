@@ -37,6 +37,7 @@ public function index() : Response
         $form = $this->createForm(StudentType::class, $s);
         $form->add('ajouter', SubmitType::class) ;
         $form->handleRequest($request);
+       // var_dump($s); die;
         if ($form->isSubmitted())
         { $em = $doctrine->getManager();
             $em->persist($s);
