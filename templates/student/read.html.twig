@@ -1,3 +1,13 @@
+
+{#{{ form(form) }}#}
+
+
+<form method="post" action="{{ path('recherche_student') }}">
+
+    <label>NSC</label>
+    <input id="nsc" name="nsc" type="text"/> <br>
+    <input type="submit" value="Search"/>
+</form>
 {% for s in students %}
     NSC : {{ s.nsc }} <br>
     Email : {{ s.email }} <br>

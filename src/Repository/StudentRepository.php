@@ -54,13 +54,24 @@ class StudentRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Student
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findOneBynNsc($value): ?Student
+   {
+       return $this->createQueryBuilder('s')
+           ->andWhere('s.nsc = :val')
+           ->setParameter('val', $value)
+           ->getQuery()
+           ->getOneOrNullResult()
+       ;
+   }
+
+    public function TriByEmail(): array
+    {
+        return $this->createQueryBuilder('s')
+            ->orderBy('s.email','ASC')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult()
+
+            ;
+    }
 }
